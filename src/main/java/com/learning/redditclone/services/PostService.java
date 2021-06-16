@@ -33,12 +33,6 @@ public class PostService {
     private final AuthService authService;
     private final PostMapper postMapper;
 
-    public void save(PostRequest postRequest) {
-        Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName())
-                .orElseThrow(() -> new SubredditNotFoundException(postRequest.getSubredditName()));
-        postRepository.save(postMapper.map(postRequest, subreddit, authService.getCurrentUser()));
-    }
-
     @Transactional(readOnly = true)
     public PostResponse getPost(Long id) {
         Post post = postRepository.findById(id)
@@ -53,6 +47,15 @@ public class PostService {
                 .map(postMapper::mapToDto)
                 .collect(toList());
     }
+
+    public void save(PostRequest postRequest) {
+        Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName())
+                .orElseThrow(() -> new SubredditNotFoundException(postRequest.getSubredditName()));
+        postRepository.save(postMapper.map(postRequest, subreddit, authService.getCurrentUser()));
+    }
+    //mapping the PostRequest object to our Post entity using the PostMapper.map() method
+    //observe that in our Post entity we need to fill some fields like subreddit, createdDate,
+    // user which are not present in the PostRequest object.
 
     @Transactional(readOnly = true)
     public List<PostResponse> getPostsBySubreddit(Long subredditId) {

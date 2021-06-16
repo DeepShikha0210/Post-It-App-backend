@@ -1,17 +1,14 @@
 package com.learning.redditclone.dto;
 
+import com.learning.redditclone.models.VoteType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubredditDto {
-    private Long id;
-    private String name;
-    private String description;
-    private Integer numberOfPosts;
+public class VoteDto {
+    private VoteType voteType;
+    private Long postId;
 }

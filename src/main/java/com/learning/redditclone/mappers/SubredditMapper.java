@@ -13,7 +13,7 @@ import java.util.List;
 public interface SubredditMapper {
 
 
-    @Mapping(target = "postCount", expression = "java(mapPosts(subreddit.getPosts()))")
+    @Mapping(target = "numberOfPosts", expression = "java(mapPosts(subreddit.getPosts()))")
     SubredditDto mapSubredditToDto(Subreddit subreddit);
 
     default Integer mapPosts(List<Post> numberOfPosts) {

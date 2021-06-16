@@ -26,7 +26,9 @@ class MailService {
             messageHelper.setFrom("springreddit@email.com");
             messageHelper.setTo(notificationEmail.getRecipient());
             messageHelper.setSubject(notificationEmail.getSubject());
-            messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()));
+            //Before messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()));
+// After
+            messageHelper.setText(notificationEmail.getBody());
         };
         try {
             mailSender.send(messagePreparator);
@@ -35,7 +37,7 @@ class MailService {
             throw new SpringRedditException("Exception occurred when sending mail to " + notificationEmail.getRecipient());
         }
     }
-}
 
+}
 
 
