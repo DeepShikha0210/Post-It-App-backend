@@ -1,6 +1,7 @@
 package com.learning.redditclone.security;
 
 import com.learning.redditclone.exceptions.SpringRedditException;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Value;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
